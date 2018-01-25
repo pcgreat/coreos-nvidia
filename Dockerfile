@@ -58,7 +58,11 @@ RUN ${NVIDIA_INSTALLER} \
     --kernel-name=$(cat /tmp/kernel.release) \
     --installer-prefix=${NVIDIA_BUILD_PATH} \
     --utility-prefix=${NVIDIA_BUILD_PATH} \
-    --opengl-prefix=${NVIDIA_BUILD_PATH}
+    --opengl-prefix=${NVIDIA_BUILD_PATH} \
+    --no-opengl-files \
+    --compat32-libdir=${NVIDIA_BUILD_PATH}/lib32 \
+    --disable-nouveau \
+    --no-drm
 
 RUN mkdir  ${NVIDIA_BUILD_PATH}/lib/modules/ && \
     cp -rf /lib/modules/$(cat /tmp/kernel.release) ${NVIDIA_BUILD_PATH}/lib/modules/${KERNEL_VERSION}
